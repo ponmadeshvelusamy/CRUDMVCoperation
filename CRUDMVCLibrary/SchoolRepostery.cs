@@ -26,7 +26,7 @@ namespace CRUDMVCLibrary
             try
             {
 
-                var Insert = $"exec Schoolin'{refer.SchoolName}',{refer.ContactNo},'{refer.Email}',{refer.Pincode}";
+                var Insert = $"exec Schoolin '{refer.SchoolName}',{refer.ContactNo},'{refer.Email}',{refer.Pincode}";
                 connobj.Open();
                 connobj.Execute(Insert);
                 connobj.Close();

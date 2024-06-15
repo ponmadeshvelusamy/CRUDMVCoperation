@@ -27,16 +27,18 @@ namespace CRUDMVCoperation.Controllers
         // GET: SchoolController/Create
         public ActionResult Create()
         {
-            return View();
+            var insert=new Schoolmodel();
+            return View("Create",insert);
         }
 
         // POST: SchoolController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(Schoolmodel collection)
         {
             try
             {
+                refobj.Schoolin(collection);
                 return RedirectToAction(nameof(Index));
             }
             catch

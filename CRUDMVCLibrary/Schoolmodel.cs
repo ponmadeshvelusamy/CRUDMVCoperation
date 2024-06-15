@@ -7,7 +7,7 @@
         public long ContactNo { get; set; }
         public String Email { get; set; }
         public String Address {  get; set; }
-        public String Pincode { get; set; }
+        public long Pincode { get; set; }
 
     }
 }
