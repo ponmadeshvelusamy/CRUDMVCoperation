@@ -19,9 +19,10 @@ namespace CRUDMVCoperation.Controllers
         }
 
         // GET: SchoolController/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(long id)
         {
-            return View();
+            var datas=refobj.getbyID(id).FirstOrDefault();
+            return View("Details",datas);
         }
 
         // GET: SchoolController/Create
@@ -48,18 +49,20 @@ namespace CRUDMVCoperation.Controllers
         }
 
         // GET: SchoolController/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(long id)
         {
-            return View();
+            var values = refobj.getbyID(id).FirstOrDefault();
+            return View("Edit",values);
         }
 
         // POST: SchoolController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(Schoolmodel refer)
         {
             try
             {
+                refobj.Update(refer);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -69,18 +72,21 @@ namespace CRUDMVCoperation.Controllers
         }
 
         // GET: SchoolController/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(long id)
         {
-            return View();
+            var values =refobj.getbyID(id).FirstOrDefault();
+            return View("Delete",values);
         }
 
         // POST: SchoolController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(Schoolmodel values)
         {
             try
             {
+                var ID = values.SchoolID;
+                refobj.Delete(ID);
                 return RedirectToAction(nameof(Index));
             }
             catch

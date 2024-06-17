@@ -26,7 +26,7 @@ namespace CRUDMVCLibrary
             try
             {
 
-                var Insert = $"exec Schoolin '{refer.SchoolName}',{refer.ContactNo},'{refer.Email}',{refer.Pincode}";
+                var Insert = $"exec Inserting '{refer.SchoolName}',{refer.ContactNo},'{refer.Email}','{refer.Address}',{refer.Pincode}";
                 connobj.Open();
                 connobj.Execute(Insert);
                 connobj.Close();
@@ -79,13 +79,13 @@ namespace CRUDMVCLibrary
                 throw;
             }            
         }
-        public void Update(long  SchoolID)
+        public void Update(Schoolmodel objname)
         {
             try
             {
-                var update = $"exec EditorUpdate{SchoolID}";
+                var Edit = ($"exec EditorUpdate {objname.SchoolID},'{objname.SchoolName}',{objname.ContactNo},'{objname.Email}','{objname.Address}',{objname.Pincode}");
                 connobj.Open();
-                var value = connobj.Query<Schoolmodel>(update);
+                connobj.Execute(Edit);
                 connobj.Close();
             }
             catch(SqlException)
@@ -97,11 +97,11 @@ namespace CRUDMVCLibrary
                 throw;
             }
         }
-        public void Delete(long SchoolID)
+        public void Delete(long Schoolid)
         {
             try
             {
-                var delete = $"exec DeleteDetails{SchoolID}";
+                var delete =($"exec DeleteDetails {Schoolid}");
                 connobj.Open();
                 connobj.Execute(delete);
                 connobj.Close();
